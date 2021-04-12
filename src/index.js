@@ -1,4 +1,6 @@
 import "./style.css";
+import createShip from "./components/createShip";
 
-const header = document.querySelector("h1");
-header.style.color = "red";
+
+
+
