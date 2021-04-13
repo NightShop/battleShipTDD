@@ -3,7 +3,7 @@ const createShip = (origin, length, orientation) => {
     let sunk = false;
     if (orientation == "vertical") {
         for (let i = 1; i < length; i++) {
-            coordinates.push(pointFactory(origin[0], origin[1] - i));
+            coordinates.push(pointFactory(origin[0], origin[1] + i));
         }
     } else if (orientation == "horizontal") {
         for (let i = 1; i < length; i++) {
@@ -13,9 +13,11 @@ const createShip = (origin, length, orientation) => {
         throw (err)
     };
 
-    const hit = (x, y) => {
+    const id = origin.join("").toString();
+
+    const hit = (col, row) => {
         const newCoordinates = coordinates.map(item => {
-            if (item.x === x && item.y === y) {
+            if (item.x === col && item.y === row) {
                 let tempItem = { ...item };
                 tempItem.hit = true;
                 return tempItem;
@@ -34,6 +36,16 @@ const createShip = (origin, length, orientation) => {
         return coordinates;
     }
 
+    const getCoordinatesArray = () => {
+        return coordinates.map(coordinate => {
+            return [coordinate.x, coordinate.y];
+        })
+    }
+
+    const getId = () => {
+        return id;
+    }
+
     const isSunk = () => {
         return sunk;
     }
@@ -43,6 +55,8 @@ const createShip = (origin, length, orientation) => {
         getCoordinates,
         length,
         hit,
+        getId,
+        getCoordinatesArray,
     }
 }
 
