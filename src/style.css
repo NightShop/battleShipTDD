@@ -1,3 +1,39 @@
 h1 {
     color: green;
 }
+
+.container {
+    width: 720px;
+}
+
+.gridSection {
+    margin: 50px auto;
+    width: 300px;
+}
+
+.gridContainer {
+    display: flex;
+}
+
+.gridField {
+    border: 1px solid black;
+    border-collapse: collapse;
+    width: 50px;
+    height: 50px;
+}
+
+.revealed {
+    background-color: lightgrey;
+}
+
+.unrevealed {
+    background-color: grey;
+}
+
+.bombed {
+    background-color: darkred;
+}
+
+.ship {
+    background-color: black;
+}
