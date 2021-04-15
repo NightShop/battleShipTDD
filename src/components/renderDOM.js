@@ -1,10 +1,14 @@
 const renderDOM = (() => {
-    const grid = (gridInput) => {
+    const makeGrid = (gridInput, showFields, callback) => {
         const gridContainer = document.createElement("div");
-        gridInput.forEach(row => {
+        gridInput.forEach((column, x) => {
             const gridRow = document.createElement("div");
-            row.forEach(field => {
-                gridRow.appendChild(createOneField(field));
+            column.forEach((fieldContent, y) => {
+                const field = createOneField(fieldContent, callback, x, y);
+                if(!showFields) {
+                    field.classList.add("enemyField");
+                }
+                gridRow.appendChild(field);
             })
             gridContainer.appendChild(gridRow);
         })
@@ -12,10 +16,10 @@ const renderDOM = (() => {
         return gridContainer;
     }
 
-    function createOneField(fieldContent) {
+    function createOneField(fieldContent, callback, x, y) {
         const container = document.createElement("div");
         container.textContent = fieldContent;
-
+        container.addEventListener("click", () => callback([y,x]));
         switch (fieldContent) {
             case "B":
                 container.classList.add("bombed");
@@ -37,7 +41,7 @@ const renderDOM = (() => {
         return container;
     }
 
-    return { grid };
+    return { makeGrid };
 })();
 
 export default renderDOM;

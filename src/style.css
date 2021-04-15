@@ -37,3 +37,8 @@ h1 {
 .ship {
     background-color: black;
 }
+
+.ship.enemyField {
+    background-color: grey;
+}
+

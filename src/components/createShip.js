@@ -1,6 +1,9 @@
 const createShip = (origin, length, orientation) => {
     let coordinates = [pointFactory(...origin)];
     let sunk = false;
+
+    console.log("create ship", origin, "leng", length, orientation);
+
     if (orientation == "vertical") {
         for (let i = 1; i < length; i++) {
             coordinates.push(pointFactory(origin[0], origin[1] + i));
@@ -62,8 +65,8 @@ const createShip = (origin, length, orientation) => {
 
 function pointFactory(x, y) {
     return {
-        x: x,
-        y: y,
+        x: y,
+        y: x,
         hit: false
     }
 }
