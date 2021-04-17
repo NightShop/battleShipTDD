@@ -15,7 +15,7 @@ const replayButton = document.createElement("button");
 container.appendChild(communicationPanel);
 
 
-
+//computer ship placement
 const shipOne = createShip(... computerPlayerLogic.getShipData(gameboardOne.getGrid(), 3));
 
 gameboardOne.addShip(shipOne, shipOne.getId());
@@ -26,8 +26,15 @@ gameboardOne.addShip(shipOneOne, shipOneOne.getId());
 const shipOneOneOne = createShip(... computerPlayerLogic.getShipData(gameboardOne.getGrid(), 5));
 gameboardOne.addShip(shipOneOneOne, shipOneOneOne.getId());
 
+
+//player ship placement
+//player ship placement
+const shipsLengths = [3, 2, 6];
+renderDOM.makeShipPlacementDiv(createShip,gameboardTwo.addShip, shipsLengths);
+
 const shipTwo = createShip([1, 3], 5, "horizontal");
 gameboardTwo.addShip(shipTwo, shipTwo.getId());
+
 
 
 const gridOneContainer = document.createElement("div");
@@ -58,7 +65,7 @@ const gameRound = async () => {/*
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     gridOneContainer.firstChild != null ? gridOneContainer.removeChild(gridOneContainer.firstChild) : {};
-    const gridOne = renderDOM.makeGrid(gameboardOne.getGrid(), gameboardOne.receiveAttack);
+    const gridOne = renderDOM.makeGrid(gameboardOne.getGrid(), true);
     gridOneContainer.appendChild(gridOne);
 
     if (gameboardOne.areAllSunk()) {

@@ -1,5 +1,5 @@
 const renderDOM = (() => {
-    const makeGrid = (gridInput, showFields, callback) => {
+    const makeGrid = (gridInput, showFields, callback = () => {}) => {
         const gridContainer = document.createElement("div");
         gridInput.forEach((column, x) => {
             const gridRow = document.createElement("div");
@@ -19,6 +19,8 @@ const renderDOM = (() => {
     function createOneField(fieldContent, callback, x, y) {
         const container = document.createElement("div");
         container.textContent = fieldContent;
+        container.setAttribute("dataX", x);
+        container.setAttribute("dataY", y);
         container.addEventListener("click", () => callback([y,x]));
         switch (fieldContent) {
             case "B":
@@ -41,7 +43,19 @@ const renderDOM = (() => {
         return container;
     }
 
-    return { makeGrid };
+    const makeShipPlacementDiv = (callback, addship) => {
+        
+        document.addEventListener("click", (event) => {
+            const ship = callback([event.target.getAttribute("datax"),event.target.getAttribute("datay")], 2, "vertical");
+            console.log(event.target.getAttribute("datax").concat(event.target.getAttribute("datay")))
+            addship(ship, event.target.getAttribute("datax").concat(event.target.getAttribute("datay")));
+
+        })
+
+
+    }
+
+    return { makeGrid, makeShipPlacementDiv };
 })();
 
 export default renderDOM;

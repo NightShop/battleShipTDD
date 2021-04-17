@@ -13,7 +13,7 @@ const createShip = (origin, length, orientation) => {
             coordinates.push(pointFactory(origin[0] + i, origin[1]));
         }
     } else {
-        throw (err)
+        throw new Error("orientation not correct");
     };
 
     const id = origin.join("").toString();
@@ -65,8 +65,8 @@ const createShip = (origin, length, orientation) => {
 
 function pointFactory(x, y) {
     return {
-        x: y,
-        y: x,
+        x: x,
+        y: y,
         hit: false
     }
 }
