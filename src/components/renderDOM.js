@@ -7,6 +7,7 @@ const renderDOM = (() => {
                 const field = createOneField(fieldContent, callback, x, y);
                 if (!showFields) {
                     field.classList.add("enemyField");
+                    console.log("in enemyfield if")
                 }
                 gridRow.appendChild(field);
             })
@@ -43,7 +44,7 @@ const renderDOM = (() => {
         return container;
     }
 
-    const makeShipPlacementDiv = async (callback, addshipp, gridcontainer) => {
+    const makeShipPlacementDiv = async (callback, addshipp, gridcontainer, gameboard) => {
         const playerShipLengths = [5, 3, 2];
 
         const shipPlacementDiv = document.createElement("div");
@@ -78,7 +79,7 @@ const renderDOM = (() => {
         gridcontainer.addEventListener("click", function makeships(event) {
             if (counter < playerShipLengths.length) {
                 const id = [event.target.getAttribute("datax") + event.target.getAttribute("datay")];
-                const ship = callback([event.target.getAttribute("datax"), event.target.getAttribute("datay")], playerShipLengths[counter], orientation);
+                const ship = callback([event.target.getAttribute("datay"), event.target.getAttribute("datax")], playerShipLengths[counter], orientation);
                 addshipp(ship, id);
                 counter += 1;
                 shipLength.textContent = playerShipLengths[counter];
@@ -86,17 +87,19 @@ const renderDOM = (() => {
             if (counter === playerShipLengths.length) {
                 gridcontainer.removeEventListener("click", makeships);
                 shipPlacementDiv.innerHTML = "";
-                console.log("in makeship placement");
             }
             
+            console.log("in makeship placement");
+            gridcontainer.removeChild(gridcontainer.firstChild);
+            gridcontainer.appendChild(renderDOM.makeGrid(gameboard.getGrid(), true));
             
             
         })
         
         
         shipPlacementDiv.appendChild(rotateButton);
-        
         return shipPlacementDiv;
+
         
 
 

@@ -4,11 +4,11 @@ const createShip = (origin, length, orientation) => {
 
     console.log("create ship", origin, "leng", length, orientation);
 
-    if (orientation == "vertical") {
+    if (orientation == "horizontal") {
         for (let i = 1; i < length; i++) {
-            coordinates.push(pointFactory(origin[0], parseInt(origin[1], 10) + i, 10));
+            coordinates.push(pointFactory(origin[0], parseInt(origin[1], 10) + i));
         }
-    } else if (orientation == "horizontal") {
+    } else if (orientation == "vertical") {
         for (let i = 1; i < length; i++) {
             coordinates.push(pointFactory(parseInt(origin[0], 10) + i, origin[1]));
         }
