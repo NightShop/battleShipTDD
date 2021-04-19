@@ -57,7 +57,6 @@ test("hitting on already hit field of ship doesnt work", () => {
     
     const gameboard = createGameboard();
     gameboard.addShip(tempShip, "34");
-    console.log("shippppppp", gameboard.getGrid())
     gameboard.receiveAttack([3, 4]);
     expect(gameboard.getGrid()).toEqual(
         [

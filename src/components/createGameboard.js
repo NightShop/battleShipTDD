@@ -48,7 +48,7 @@ const gameboard = () => {
             return
         }
         ship.getCoordinatesArray().forEach(coordinatePair => {
-            grid[coordinatePair[1]][coordinatePair[0]] = id;
+            grid[coordinatePair[0]][coordinatePair[1]] = id;
         });
         shipsDatabase[id] = ship;
 
