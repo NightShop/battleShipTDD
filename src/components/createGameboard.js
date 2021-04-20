@@ -48,7 +48,7 @@ const gameboard = () => {
             return
         }
         ship.getCoordinatesArray().forEach(coordinatePair => {
-            grid[coordinatePair[1]][coordinatePair[0]] = id;
+            grid[coordinatePair[0]][coordinatePair[1]] = id;
         });
         shipsDatabase[id] = ship;
 
@@ -56,11 +56,11 @@ const gameboard = () => {
     }
 
     const receiveAttack = ([x, y]) => {
-        const cell = grid[y][x]
+        const cell = grid[x][y]
         if (cell !== "" && cell !== "B" && cell !== "D") {
             const ship = shipsDatabase[cell];
             ship.hit(x, y);
-            grid[y][x] = "B";
+            grid[x][y] = "B";
 
             if (ship.isSunk()) {
                 ship.getCoordinatesArray().forEach(pair => {
@@ -76,8 +76,8 @@ const gameboard = () => {
                     adjacentCells.push([col - 1, row + 0]);
                     adjacentCells.push([col - 1, row - 1]);
                     adjacentCells.forEach(pairAdj => {
-                        if (grid[pairAdj[1]][pairAdj[0]] === "") {
-                            grid[pairAdj[1]][pairAdj[0]] = "D";
+                        if (grid[pairAdj[0]][pairAdj[1]] === "") {
+                            grid[pairAdj[0]][pairAdj[1]] = "D";
                         }
                     })
 
@@ -97,13 +97,11 @@ const gameboard = () => {
 
     const resetBoard = () => {
         grid = JSON.parse(JSON.stringify(emptyGrid));
-        console.log(emptyGrid);
+
         const keys = Object.keys(shipsDatabase);
         keys.forEach(key => {
             delete shipsDatabase[key];
         })
-        console.table(grid);
-        console.log("im in reset board")
     }
 
     return { getGrid, addShip, receiveAttack, areAllSunk, resetBoard }

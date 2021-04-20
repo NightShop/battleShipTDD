@@ -30,7 +30,6 @@ container.appendChild(gridTwoContainer);
 //computer ship placement
 const shipTwo = createShip(...computerPlayerLogic.getShipData(gameboardTwo.getGrid(), 3));
 gameboardTwo.addShip(shipTwo, shipTwo.getId());
-console.log(shipTwo.getCoordinatesArray());
 const shipTwoTwo = createShip(...computerPlayerLogic.getShipData(gameboardTwo.getGrid(), 2));
 gameboardTwo.addShip(shipTwoTwo, shipTwoTwo.getId());
 const shipTwoTwoTwo = createShip(...computerPlayerLogic.getShipData(gameboardTwo.getGrid(), 5));
@@ -48,7 +47,6 @@ shipPlacementDiv.then(promise => {
 
 const gridOne = renderDOM.makeGrid(gameboardOne.getGrid(), true);
 gridOneContainer.appendChild(gridOne);
-console.table(gameboardTwo.getGrid());
 const gridTwo = renderDOM.makeGrid(gameboardTwo.getGrid(), false);
 gridTwoContainer.appendChild(gridTwo);
 

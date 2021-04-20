@@ -1,18 +1,19 @@
 const renderDOM = (() => {
     const makeGrid = (gridInput, showFields, callback = () => { }) => {
         const gridContainer = document.createElement("div");
-        gridInput.forEach((column, x) => {
+        gridInput.forEach((row, y) => {
             const gridRow = document.createElement("div");
-            column.forEach((fieldContent, y) => {
+            row.forEach((fieldContent, x) => {
                 const field = createOneField(fieldContent, callback, x, y);
                 if (!showFields) {
                     field.classList.add("enemyField");
-                    console.log("in enemyfield if")
                 }
                 gridRow.appendChild(field);
             })
             gridContainer.appendChild(gridRow);
         })
+
+
         gridContainer.classList.add("gridContainer");
         return gridContainer;
     }
@@ -89,7 +90,6 @@ const renderDOM = (() => {
                 shipPlacementDiv.innerHTML = "";
             }
             
-            console.log("in makeship placement");
             gridcontainer.removeChild(gridcontainer.firstChild);
             gridcontainer.appendChild(renderDOM.makeGrid(gameboard.getGrid(), true));
             
